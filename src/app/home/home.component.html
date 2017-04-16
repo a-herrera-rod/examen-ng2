@@ -1,11 +1,10 @@
 <div>
   <h2>Device list</h2>    
 
-  <ul>
+  <ul>    
     <li class="text" *ngFor="let item of items | async">
       Name: {{item.name}}
       Status: {{item.status}}
     </li>
-  </ul>
-  
+  </ul>  
 </div>

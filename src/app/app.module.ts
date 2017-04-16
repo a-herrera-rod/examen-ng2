@@ -16,9 +16,8 @@ import { CalendarModule } from 'primeng/primeng';
 /*Components  */
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { BooksComponent } from './books/books.component';
-import { BooksManagerComponent } from './books-manager/books-manager.component';
-import { BookFiltersComponent } from './book-filters/book-filters.component';
+import { DevicesComponent } from './devices/devices.component';
+import { DevicesManagerComponent } from './devices-manager/devices-manager.component';
 /* Directives and Pipes */
 import { HighlightDirective} from './_directives/highlight';
 import { MyCurrencyPipe } from './shared/my-currency.pipe';
@@ -55,9 +54,8 @@ export const firebaseConfig = {
     AppComponent,
     HomeComponent,
     AboutComponent,
-    BooksComponent,
-    BooksManagerComponent,
-    BookFiltersComponent,
+    DevicesComponent,
+    DevicesManagerComponent,    
     HighlightDirective,
     MyCurrencyPipe,
     MyCurrencyFormatterDirective,
