@@ -6,22 +6,19 @@
     aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Speqtor</a>
     <div class="collapse navbar-collapse" id="navbarColor01" >
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="#" [routerLink]="['']">Home <span class="sr-only">(current)</span></a>
-        </li>          
+        </li> 
+         <li class="nav-item">
+          <a class="nav-link" href="#" [routerLink]="['login']">Login</a>
+        </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" [routerLink]="['devices']">Devices</a>        
-        </li>      
+          <a class="nav-link" href="#" [routerLink]="['deviceList']">Device List</a>
+        </li>
       </ul>
-      <div class="form-inline">
-        <input  id="inputSearchBar" class="form-control mr-sm-2" type="text" 
-        placeholder="Search" 
-        [(ngModel)]="searchText" (keyup)="onSearch($event)">
-        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-      </div>
     </div>
   </nav>
 </header>
@@ -30,6 +27,3 @@
     <router-outlet></router-outlet>
   </div>
 </main>
-<footer>
-  <a [href]="url">Examen Angular 2</a>
-</footer>

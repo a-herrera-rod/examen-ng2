@@ -2,13 +2,13 @@ import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
-import { LoginService } from './login.service';
+import { AuthService } from './login.service';
 import { UserProfileService } from './user-profile.service';
 
 @Component({
   selector: 'my-login',
   templateUrl: './login.component.html',
-  providers: [LoginService]
+  providers: [AuthService]
 })
 export class LoginComponent implements OnDestroy {
   private loginSub: Subscription;
@@ -17,7 +17,7 @@ export class LoginComponent implements OnDestroy {
   errorMessage:string;
 
   constructor(
-    private loginService: LoginService,
+    private loginService: AuthService,
     private route: ActivatedRoute,
     private router: Router,
     private userProfileService: UserProfileService) {
@@ -27,27 +27,26 @@ export class LoginComponent implements OnDestroy {
     return this.userProfileService.isLoggedIn;
   }
   login() {
-    this.loginSub = this.loginService
+    this.loginService
       .login(this.username, this.password)
-      .mergeMap(loginResult => {
-        console.log(loginResult);
-        return this.route.queryParams;
-      })
-      .map(qp => qp['redirectTo'])
-      .subscribe(redirectTo => {
-        if (this.userProfileService.isLoggedIn) {
+      .then(()=>{
+        
           this.errorMessage=undefined;
           console.log(`Successfully logged in`);
-          let url = redirectTo ? [redirectTo] : [ '/' ];
-          this.router.navigate(url);
-        }else{
+        this.route.queryParams.subscribe((r:any)=>{
+          console.log(r.redirectTo)
+          this.router.navigate(!!r.redirectTo?[r.redirectTo]: ['/']);
+        });
+        
+        
+      }).catch(()=>{
           this.errorMessage="Sus credenciales no son correctas";
-        }
+        
       });
   }
 
   logout() {
-    this.loginService.logout();
+    this.loginService.signOut();
     console.log(`Successfully logged out`);
   }
 

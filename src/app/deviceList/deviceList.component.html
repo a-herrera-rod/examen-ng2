@@ -1,0 +1,51 @@
+<!--<p-dataTable [value]="items | async" [editable]="true" (stateChanged)="onStateChanged($event)">
+        <p-column field="name" header="Name" [editable]="true" (valueChangeListener)="onUpdateRow($event)"></p-column>
+        <p-column field="status" header="Status" [editable]="false"></p-column>
+        <!--<p-column field="os" header="Operating System" [editable]="true" [style]="{'overflow':'visible'}">
+            <ng-template let-col let-car="rowData" pTemplate="editor">
+                <p-dropdown [(ngModel)]="car[col.field]" [options]="operatingSystems" [autoWidth]="false" [style]="{'width':'100%'}" required="true"></p-dropdown>
+            </ng-template>
+        </p-column>
+      <p-column field="domain" header="Workgroup/Domain" [editable]="true" [style]="{'overflow':'visible'}">
+            <ng-template let-col let-car="rowData" pTemplate="editor">
+                <p-dropdown [(ngModel)]="car[col.field]" [options]="domains" [autoWidth]="false" [style]="{'width':'100%'}" required="true"></p-dropdown>
+            </ng-template>
+        </p-column>
+        <p-column field="ip" header="IP Address" [editable]="true"></p-column>    
+    </p-dataTable>-->
+
+
+<p-dataTable [value]="items | async" selectionMode="single" [(selection)]="selectedDevice" (onRowSelect)="onRowSelect($event)"
+    [paginator]="true" rows="15" [responsive]="true">
+    <p-header>Device List</p-header>
+    <p-column field="name" header="Name" [sortable]="true"></p-column>
+    <p-column field="status" header="Status" [sortable]="true"></p-column>
+    <p-column field="ip" header="IP" [sortable]="true"></p-column>
+    <p-footer>
+        <div class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add"></button></div>
+    </p-footer>
+</p-dataTable>
+
+
+<p-dialog *ngIf="device" header="Device Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+    <div class="ui-grid ui-grid-responsive ui-fluid" *ngIf="device">
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="name">Name</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="name" [(ngModel)]="device.name" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="status">Status</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="status" [(ngModel)]="device.status" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-4"><label for="ip">IP</label></div>
+            <div class="ui-grid-col-8"><input pInputText id="ip" [(ngModel)]="device.ip" /></div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+            <button type="button" pButton icon="fa-close" (click)="delete()" label="Delete"></button>
+            <button type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>
