@@ -12,6 +12,9 @@ import { removeNgStyles, createNewHosts } from '@angularclass/hmr';
 
 /* Prime NG */
 import { CalendarModule } from 'primeng/primeng';
+import { DataTableModule } from 'primeng/primeng';
+import { SharedModule } from 'primeng/primeng';
+import { DialogModule } from 'primeng/primeng';
 
 /*Components  */
 import { HomeComponent } from './home/home.component';
@@ -48,7 +51,10 @@ export const firebaseConfig = {
     FormsModule,
     routing,
     CalendarModule,
-    ReactiveFormsModule
+    DataTableModule,
+    SharedModule,
+    ReactiveFormsModule,
+    DialogModule
   ],
   declarations: [
     AppComponent,
